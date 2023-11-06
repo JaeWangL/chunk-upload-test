@@ -1,0 +1,64 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version "${springBootVersion}"
+	id 'io.spring.dependency-management' version '1.1.3'
+}
+
+ext {
+	appVersion = '0.0.1-SNAPSHOT'
+}
+
+group = 'com.smartone'
+version = appVersion
+
+java {
+	sourceCompatibility = '21'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+	// Swagger
+	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springDocVersion}"
+
+	// Azure
+	implementation "com.azure:azure-storage-blob:${azureVersion}"
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// Logging
+	implementation "net.logstash.logback:logstash-logback-encoder:${logbackEncoder}"
+
+	// Utilities
+	implementation "commons-io:commons-io:${commonIO}"
+	implementation "org.apache.commons:commons-lang3:${commonLang3}"
+	implementation "com.github.f4b6a3:ulid-creator:${ulidCreator}"
+
+	// Tests
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+processResources {
+	filesMatching('**/application.yml') {
+		expand(project.properties)
+	}
+}

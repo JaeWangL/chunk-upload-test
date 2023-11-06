@@ -1,2 +1,5 @@
-# chunk-upload-test
-File chunk upload test with nextjs and spring boot
+# Chunk Upload Test
+This project is for chunk uploading with large files
+
+Backend: Spring Boot
+Frontend: Next.JS

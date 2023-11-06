@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<included>
+  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- console 로깅의 패턴 설정 -->
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>%cyan([%contextName]) - %magenta([%d{yyyy.MM.dd HH:mm:ss.SSS}]) - %highlight([%-5level]) - [%thread] - [%X{correlationId}] - %green([%logger{5}]) - [%marker] - %msg%n</pattern>
+    </encoder>
+  </appender>
+</included>
